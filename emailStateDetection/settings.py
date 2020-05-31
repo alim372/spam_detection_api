@@ -108,8 +108,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'OPTIONS': {
             'database' : 'email_state_detection',
-            'user' : 'flfl',
-            'password' : 'flfl_010',
+            'user' : 'root',
+            'password' : '123',
             
         },
     }

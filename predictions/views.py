@@ -34,7 +34,7 @@ def initialPreprocessing(request):
     body = emailPipeline.fit_transform([body]) # stemming content into the original words and remove stop words
     subject = emailPipeline.fit_transform([subject]) # stemming content into the original words and remove stop words
     filename = str(message_id) + ".txt"
-    content = {'id' : message_id, 'data' : { 'body' : body.split(' '), 'subject': subject.split(' ')}, 'sender' : sender ,'event': event}
+    content = {'id' : message_id, 'data' : { 'body' : [word for word in body.split(' ') if word !=""], 'subject': [word for word in subject.split(' ') if word !=""]}, 'sender' : sender ,'event': event}
     return Response(prepareResponse([],[],content,  True ,'data processed successfully' , []) )
 
 @api_view(['POST'])

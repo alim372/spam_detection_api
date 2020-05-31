@@ -30,12 +30,12 @@ class EmailToWords(BaseEstimator, TransformerMixin):
     def transform(self, X, y=None):
         X_to_words = []
         words = ''
+        ins = initialFunctions()
         for email in X:
             if (type(email) != str):
-                ins = initialFunctions()
-                text = ins.email_to_plain( email)
+                text = ins.stemming(email)
             else:
-                text = email
+                text = ins.stemming(email)
             if text is None:
                 text = 'empty'
             if self.lowercaseConversion:
