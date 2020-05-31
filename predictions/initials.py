@@ -82,3 +82,7 @@ class initialFunctions:
     def load_string_email(self, stringEmail):
         return email.message_from_string(stringEmail, policy=email.policy.default)
 
+    def load_email(is_spam, filename):
+        directory = "data/temp/spam" if is_spam else "data/temp/ham"
+        with open(os.path.join(directory, filename), "rb") as f:
+            return email.parser.BytesParser(policy=email.policy.default).parse(f)

@@ -3,5 +3,6 @@ from predictions import views
 
 urlpatterns = [
     path('initialpreprocessing/', views.initialPreprocessing),
-    path('emailfilepredection/', views.emailFilePredection),
+    path('emailStringPredection/', views.emailStringPredection),
+    path('trainingModelForEvent/', views.trainingModelForEvent),
 ]

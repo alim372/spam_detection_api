@@ -29,6 +29,7 @@ class EmailToWords(BaseEstimator, TransformerMixin):
         return self
     def transform(self, X, y=None):
         X_to_words = []
+        words = ''
         for email in X:
             if (type(email) != str):
                 ins = initialFunctions()
@@ -56,7 +57,6 @@ class EmailToWords(BaseEstimator, TransformerMixin):
                 stemmed_word_count = Counter()
                 for word, count in word_counts.items():
                     stemmed_word = self.stemmer.stem(word)
-                    stemmed_word_count[stemmed_word] += count
+                    words += stemmed_word +' '
                 word_counts = stemmed_word_count
-            X_to_words.append(word_counts)
-        return np.array(X_to_words)
+        return words
