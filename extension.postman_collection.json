@@ -24,17 +24,17 @@
 							"type": "text"
 						},
 						{
-							"key": "header",
-							"value": "<header> sdhbhds  </header>",
+							"key": "subject",
+							"value": "Live 3D buildings map styling tutorial this week with Vanessa Knoppke-Wetzel",
 							"type": "text"
 						},
 						{
 							"key": "body",
-							"value": "<body> his applying in many jobs  </body>",
+							"value": "On our livestream this week, Mapbox Senior Map Designer Vanessa Knoppke-Wetzel will answer live Q+A and walk you through 3D buildings and data-driven styling in Studio.",
 							"type": "text"
 						},
 						{
-							"key": "events",
+							"key": "event",
 							"value": "spam",
 							"type": "text"
 						},
@@ -78,33 +78,13 @@
 					"mode": "formdata",
 					"formdata": [
 						{
-							"key": "sender",
-							"value": "sender@yahoo.com",
-							"type": "text"
-						},
-						{
-							"key": "message_id",
-							"value": "1554regr515",
-							"type": "text"
-						},
-						{
-							"key": "header",
-							"value": "<header> sdhbhds  </header>",
-							"type": "text"
-						},
-						{
-							"key": "body",
-							"value": "<body> his applying in many jobs  </body>",
-							"type": "text"
-						},
-						{
-							"key": "events",
+							"key": "event",
 							"value": "spam",
 							"type": "text"
 						},
 						{
 							"key": "history",
-							"value": "[{  id : 1332466 , data : [ \"appli\",\n        \"mani\",\n        \"job\"]     } , {  id : 1332226 , data : [ \"hi\",\n        \"man\",\n        \"job\"]     }]",
+							"value": "[{\n\t\"id\": 1,\n   \"label\":\"spam\",\n\t\"data\": [\n\t\t\"well\",\n\t\t\"often\",\n\t\t\"seen\",\n\t\t\"sever\",\n\t\t\"space\",\n\t\t\"war\",\n\t\t\"sci-fi\",\n\t\t\"movi\",\n\t\t\",\",\n\t\t\"n't\",\n\t\t\"?\",\n\t\t\"but\",\n\t\t\"ever\",\n\t\t\"thought\",\n\t\t\"happen\",\n\t\t\"bullet\",\n\t\t\"fire\",\n\t\t\"space\"\n\t]\n}, {\n\t\"id\": 2,\n    \"label\":\"ham\",\n\t\"data\": [\"On\",\n\t\t\"livestream\",\n\t\t\"week\",\n\t\t\",\",\n\t\t\"mapbox\",\n\t\t\"senior\",\n\t\t\"map\",\n\t\t\"design\",\n\t\t\"vanessa\",\n\t\t\"knoppke-wetzel\",\n\t\t\"answer\",\n\t\t\"live\",\n\t\t\"q+a\",\n\t\t\"walk\",\n\t\t\"3D\",\n\t\t\"build\",\n\t\t\"data-driven\",\n\t\t\"style\",\n\t\t\"studio\"\n\t]\n}]",
 							"type": "text"
 						},
 						{
@@ -115,7 +95,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/predictions/initialpreprocessing/",
+					"raw": "http://127.0.0.1:8000/predictions/trainingModelForEvent/",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -126,7 +106,7 @@
 					"port": "8000",
 					"path": [
 						"predictions",
-						"initialpreprocessing",
+						"trainingModelForEvent",
 						""
 					]
 				}
@@ -142,34 +122,11 @@
 					"mode": "formdata",
 					"formdata": [
 						{
-							"key": "mode",
-							"value": "check",
-							"type": "text"
-						},
-						{
-							"key": "type",
-							"value": "login",
-							"type": "text"
-						},
-						{
-							"key": "empho",
-							"value": "m@yahoo.com",
-							"type": "text"
-						},
-						{
-							"key": "pass",
-							"value": "123456",
-							"type": "text"
-						},
-						{
-							"key": "udid",
-							"value": "1",
-							"type": "text"
+							"key": "file",
+							"type": "file",
+							"src": "/home/flfl/Desktop/my-file.txt"
 						}
-					],
-					"options": {
-						"formdata": {}
-					}
+					]
 				},
 				"url": {
 					"raw": "http://127.0.0.1:8000/predictions/emailfilepredection/",
