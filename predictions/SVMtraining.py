@@ -6,25 +6,27 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics import confusion_matrix
 import json
 from sklearn.pipeline import Pipeline
-from .featureExtraction import EmailToWords
 import joblib
 
 class SVMtraining:
-    dfLearning = pd.DataFrame(columns=['text', 'label'])
     path = ''
     def __init__(self, data, path):
         self.path = path 
-        jsonHistory = json.loads(data)
-        messages = []
-        labels = []
-        for entry in jsonHistory:
-            message = ''
-            for word in entry['data'] : 
-                message += word+' '
-            labels.append(entry['label'])
-            messages.append(message)
-        self.dfLearning['text'] = messages
-        self.dfLearning['label'] = labels
+        if isinstance(data, pd.DataFrame):
+            self.dfLearning = data
+        else:    
+            jsonHistory = json.loads(data)
+            messages = []
+            labels = []
+            for entry in jsonHistory:
+                message = ''
+                for word in entry['data'] : 
+                    message += word+' '
+                labels.append(entry['label'])
+                messages.append(message)
+            self.dfLearning = pd.DataFrame(columns=['text', 'label'])
+            self.dfLearning['text'] = messages
+            self.dfLearning['label'] = labels
     
     def training(self):
         vectorizer = TfidfVectorizer()

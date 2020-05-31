@@ -14,8 +14,10 @@ from sklearn.linear_model import LogisticRegression
 import joblib
 from nltk.corpus import stopwords 
 from nltk.tokenize import word_tokenize 
+from .SVMtraining import SVMtraining
 
 class initialFunctions:
+    directory = "data/temp/"
     def get_email_structure(self, email):
         if isinstance(email, str):
             return email
@@ -75,14 +77,55 @@ class initialFunctions:
         return ' '.join(filtered_sentence)
 
     def load_file_email(self, filename):
-        directory = "data/temp/" 
-        with open(os.path.join(directory, filename), "rb") as f:
+         
+        with open(os.path.join(self.directory , filename), "rb") as f:
             return email.parser.BytesParser(policy=email.policy.default).parse(f)   
+
+    def avb(self):
+        return
 
     def load_string_email(self, stringEmail):
         return email.message_from_string(stringEmail, policy=email.policy.default)
 
-    def load_email(is_spam, filename):
-        directory = "data/temp/spam" if is_spam else "data/temp/ham"
+    def load_email(self,is_spam, filename):
+        directory = self.directory + "spam" if is_spam else self.directory + "ham"
         with open(os.path.join(directory, filename), "rb") as f:
             return email.parser.BytesParser(policy=email.policy.default).parse(f)
+
+
+
+    def create_df_traing(self, receiver, data, event):
+        receiver_directory = self.directory + receiver
+        try:
+            os.mkdir(receiver_directory)
+        except OSError:
+            pass
+        directory_spam_ham = receiver_directory+"/spam_ham.sav"
+        # directory_important_rlater = receiver_directory+"/important_rlater.sav"
+        if (event == "mark_as_important" or event == "read" or event == "star"):
+            event = "ham"
+        elif (event == "mark_as_spam"):
+            event = "spam"
+        else:
+            event = "ham"
+        df = pd.DataFrame({"text":[data], 
+                    "label":[event]}) 
+        if (os.path.exists(directory_spam_ham)):
+            dftemp = joblib.load(directory_spam_ham)
+            df = df.append(dftemp)
+            joblib.dump(df, directory_spam_ham)
+        else:
+            joblib.dump(df, directory_spam_ham)
+
+        if (len(df['label']) > 2 ):
+            path = 'data/models/' + receiver
+            try:
+                os.mkdir(path)
+            except OSError:
+                pass
+            SVMobj = SVMtraining(df, path)
+            SVMobj.training()
+
+        return [df['text'], df['label']]
+
+       
