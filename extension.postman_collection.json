@@ -1,0 +1,195 @@
+{
+	"info": {
+		"_postman_id": "451e78a7-36d2-4082-8c7d-8dad8b7e6888",
+		"name": "extension",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "initialpreprocessing",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "sender",
+							"value": "sender@yahoo.com",
+							"type": "text"
+						},
+						{
+							"key": "message_id",
+							"value": "1554regr515",
+							"type": "text"
+						},
+						{
+							"key": "header",
+							"value": "<header> sdhbhds  </header>",
+							"type": "text"
+						},
+						{
+							"key": "body",
+							"value": "<body> his applying in many jobs  </body>",
+							"type": "text"
+						},
+						{
+							"key": "events",
+							"value": "spam",
+							"type": "text"
+						},
+						{
+							"key": "history",
+							"value": "[{  id : 1332466 , data : [ \"appli\",\n        \"mani\",\n        \"job\"]     } , {  id : 1332226 , data : [ \"hi\",\n        \"man\",\n        \"job\"]     }]",
+							"type": "text"
+						},
+						{
+							"key": "receiver",
+							"value": "receiver@gmail.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/predictions/initialpreprocessing/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"predictions",
+						"initialpreprocessing",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "trainingModelForEvent",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "sender",
+							"value": "sender@yahoo.com",
+							"type": "text"
+						},
+						{
+							"key": "message_id",
+							"value": "1554regr515",
+							"type": "text"
+						},
+						{
+							"key": "header",
+							"value": "<header> sdhbhds  </header>",
+							"type": "text"
+						},
+						{
+							"key": "body",
+							"value": "<body> his applying in many jobs  </body>",
+							"type": "text"
+						},
+						{
+							"key": "events",
+							"value": "spam",
+							"type": "text"
+						},
+						{
+							"key": "history",
+							"value": "[{  id : 1332466 , data : [ \"appli\",\n        \"mani\",\n        \"job\"]     } , {  id : 1332226 , data : [ \"hi\",\n        \"man\",\n        \"job\"]     }]",
+							"type": "text"
+						},
+						{
+							"key": "receiver",
+							"value": "receiver@gmail.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/predictions/initialpreprocessing/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"predictions",
+						"initialpreprocessing",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "emailpredection",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "mode",
+							"value": "check",
+							"type": "text"
+						},
+						{
+							"key": "type",
+							"value": "login",
+							"type": "text"
+						},
+						{
+							"key": "empho",
+							"value": "m@yahoo.com",
+							"type": "text"
+						},
+						{
+							"key": "pass",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "udid",
+							"value": "1",
+							"type": "text"
+						}
+					],
+					"options": {
+						"formdata": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/predictions/emailfilepredection/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"predictions",
+						"emailfilepredection",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
