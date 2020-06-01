@@ -29,10 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 # Application definition
-CORS_ORIGIN_WHITELIST = [
-    "http://localhost"
-]
-
+CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ALLOW_METHODS = [
     'DELETE',
@@ -53,7 +50,7 @@ CORS_ALLOW_HEADERS = [
     'user-agent',
     'x-csrftoken',
     'x-requested-with',
-	'cache-control'
+    'cache-control'
 ]
 
 INSTALLED_APPS = [
@@ -107,10 +104,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'OPTIONS': {
-            'database' : 'email_state_detection',
-            'user' : 'root',
-            'password' : '123',
-            
+            'database': 'email_state_detection',
+            'user': 'root',
+            'password': '123',
+
         },
     }
 }
