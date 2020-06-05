@@ -94,7 +94,7 @@ class initialFunctions:
 
 
 
-    def create_df_traing(self, receiver, data, event):
+    def create_df_traing(self, receiver, subject ,data, event , message_id ):
         receiver_directory = self.directory + receiver
         try:
             os.mkdir(receiver_directory)
@@ -102,23 +102,35 @@ class initialFunctions:
             pass
         directory_spam_ham = receiver_directory+"/spam_ham.sav"
         # directory_important_rlater = receiver_directory+"/important_rlater.sav"
-        if (event == "mark_as_important" or event == "read" or event == "star"):
-            event = "ham"
-        elif (event == "mark_as_spam"):
-            event = "spam"
-        else:
-            event = "ham"
-        df = pd.DataFrame({"text":[data], 
-                    "label":[event]}) 
+        
+        # if (event == "mark_as_spam" or event == "delete"):
+        #         event = "spam"
+        #     else:
+        #         event = "ham"
+        #     df = pd.DataFrame({"text":[data], 
+        #                 "label":[event]}) 
+
         if (os.path.exists(directory_spam_ham)):
             dftemp = joblib.load(directory_spam_ham)
+            if (message_id in dftemp['message_id']):
+                if (event == "undo"):
+                    pass
+                else:
+                    pass 
+            else: 
+                df = pd.DataFrame({
+                "message_id":[message_id],
+                "subject":[subject],
+                "text":[data],
+                "event":[event],
+                "label":[event]}) 
             df = df.append(dftemp)
             joblib.dump(df, directory_spam_ham)
         else:
             joblib.dump(df, directory_spam_ham)
 
         if (len(df['label']) > 2 and ('ham' in df['label']) and ('spam' in df['label'])):
-            path = 'var/www/html/data/models/' + receiver
+            path = os.path.dirname(os.path.abspath(__file__))+"/../data/models/" + receiver
             try:
                 os.mkdir(path)
             except OSError:

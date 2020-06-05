@@ -28,21 +28,26 @@ def initialPreprocessing(request):
     ])
     if (is_json(request.body)):
         postData = json.loads(request.body)
+        # sender = request.POST['sender']
+        receiver = postData['receiver']
+        message_id = postData['message_id']
+        subject = postData['subject']
+        body = postData['body']
+        event = postData['event']
     else:
-        return Response(prepareResponse([], [], content,  True, 'unexpected format of sent data ', []))
+        receiver = request.POST['receiver']
+        message_id = request.POST['message_id']
+        subject = request.POST['subject']
+        body = request.POST['body']
+        event = request.POST['event']
 
-    # sender = request.POST['sender']
-    receiver = postData['receiver']
-    message_id = postData['message_id']
-    subject = postData['subject']
-    body = postData['body']
-    event = postData['event']
+    
     # stemming content into the original words and remove stop words
     body = emailPipeline.fit_transform([body])
     # stemming content into the original words and remove stop words
     subject = emailPipeline.fit_transform([subject])
     ins = initialFunctions()
-    ins.create_df_traing(receiver, body, event)
+    ins.create_df_traing(receiver,subject, body, event,message_id )
     filename = str(message_id) + ".txt"
     content = {'id': message_id, 'data': {'body': [word for word in body.split(
         ' ') if word != ""], 'subject': [word for word in subject.split(' ') if word != ""]}, 'event': event}
