@@ -17,7 +17,7 @@ from nltk.tokenize import word_tokenize
 from .SVMtraining import SVMtraining
 
 class initialFunctions:
-    directory = "data/temp/"
+    directory = os.path.dirname(os.path.abspath(__file__))+"/../data/temp/"
     def get_email_structure(self, email):
         if isinstance(email, str):
             return email
@@ -117,8 +117,8 @@ class initialFunctions:
         else:
             joblib.dump(df, directory_spam_ham)
 
-        if (len(df['label']) > 2 ):
-            path = 'data/models/' + receiver
+        if (len(df['label']) > 2 and ('ham' in df['label']) and ('spam' in df['label'])):
+            path = 'var/www/html/data/models/' + receiver
             try:
                 os.mkdir(path)
             except OSError:

@@ -17,8 +17,6 @@ from .SVMtraining import SVMtraining
 from .predictions import Prediction
 from sklearn.feature_extraction.text import TfidfVectorizer
 from .initials import initialFunctions
-
-
 #
 @api_view(['POST'])
 def initialPreprocessing(request):
@@ -28,12 +26,17 @@ def initialPreprocessing(request):
     emailPipeline = Pipeline([
         ("Email to Words", EmailToWords()),
     ])
+    if (is_json(request.body)):
+        postData = json.loads(request.body)
+    else:
+        return Response(prepareResponse([], [], content,  True, 'unexpected format of sent data ', []))
+
     # sender = request.POST['sender']
-    receiver = request.POST['receiver']
-    message_id = request.POST['message_id']
-    subject = request.POST['subject']
-    body = request.POST['body']
-    event = request.POST['event']
+    receiver = postData['receiver']
+    message_id = postData['message_id']
+    subject = postData['subject']
+    body = postData['body']
+    event = postData['event']
     # stemming content into the original words and remove stop words
     body = emailPipeline.fit_transform([body])
     # stemming content into the original words and remove stop words
@@ -60,12 +63,12 @@ def emailStringPredection(request):
     predObj = Prediction(body, receiver)
     result = predObj.predict()
     if (result[0] == 'spam'):
-        emailInstance = Email.objects.create(
-            sender=sender,
-            message_id=message_id,
-            header=header,
-            types='spam',
-        )
+        # emailInstance = Email.objects.create(
+        #     sender=sender,
+        #     message_id=message_id,
+        #     header=header,
+        #     types='spam',
+        # )
         return Response(prepareResponse([], [], result,  True, 'this email is spam', []))
     else:
         return Response(prepareResponse([], [], result,  True, 'this email is ham', []))
@@ -84,3 +87,11 @@ def trainingModelForEvent(request):
     SVMobj = SVMtraining(history, path)
     SVMobj.training()
     return Response(prepareResponse([], [], [],  True, 'learn model... ', []))
+
+
+def is_json(myjson):
+    try:
+        json_object = json.loads(myjson)
+    except ValueError as e:
+        return False
+    return True

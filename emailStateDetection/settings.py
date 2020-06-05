@@ -100,17 +100,17 @@ WSGI_APPLICATION = 'emailStateDetection.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'OPTIONS': {
-            'database': 'email_state_detection',
-            'user': 'root',
-            'password': '123',
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'OPTIONS': {
+#             'database': 'email_state_detection',
+#             'user': 'root',
+#             'password': '123',
 
-        },
-    }
-}
+#         },
+#     }
+# }
 
 
 # Password validation
