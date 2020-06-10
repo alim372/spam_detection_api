@@ -26,7 +26,10 @@ SECRET_KEY = '06r3@t1x&z1#o6zqd3z=0jntzl0@(ni%ny50wb96cnf&^g#po)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '52.3.249.92',
+    'run.ezinbox.app'
+]
 
 # Application definition
 CORS_ORIGIN_ALLOW_ALL = True
