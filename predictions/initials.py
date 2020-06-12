@@ -15,6 +15,7 @@ import joblib
 from nltk.corpus import stopwords 
 from nltk.tokenize import word_tokenize 
 from .SVMtraining import SVMtraining
+from .models import Users
 
 class initialFunctions:
     directory = os.path.dirname(os.path.abspath(__file__))+"/../data/temp/"
@@ -173,3 +174,20 @@ class initialFunctions:
             SVMobj.training()
 
         return [df['text'], df['label']]
+
+    def setUserData(self, data):
+        if (Users.objects.filter(name='name', title='title').exists()):
+            user = Users.objects.get(id=1)
+            user.token=self.setToken()
+            user.save()
+        else:
+            emailInstance = Users.objects.create(
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                token=self.setToken(),
+                email=data['email'],
+                username=data['email'],)
+                
+    
+    def setToken(self):
+        return token_urlsafe(256) 

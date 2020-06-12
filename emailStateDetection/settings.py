@@ -28,7 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '52.3.249.92',
-    'run.ezinbox.app'
+    'run.ezinbox.app',
+    'localhost'
 ]
 
 # Application definition
@@ -64,6 +65,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
     'predictions'
 ]
@@ -78,6 +80,16 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
 ]
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#         'rest_framework.authentication.TokenAuthentication',
+#     ),
+#     'DEFAULT_PERMISSION_CLASSES':(
+#         'rest_framework.permissions.IsAuthenticated',
+#     ),
+# }
+
 
 ROOT_URLCONF = 'emailStateDetection.urls'
 
@@ -103,18 +115,19 @@ WSGI_APPLICATION = 'emailStateDetection.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'OPTIONS': {
-#             'database': 'email_state_detection',
-#             'user': 'root',
-#             'password': '123',
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+            'database': 'email_state_detection',
+            'user': 'flfl',
+            'password': 'flfl_010',
 
-#         },
-#     }
-# }
+        },
+    }
+}
 
+AUTH_USER_MODEL = 'predictions.Users' 
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
